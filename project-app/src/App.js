@@ -1,18 +1,9 @@
-import './App.css';
-import Signup from './pages/Signup'
+import AppRouter from "./Router/Router";
 
 function App() {
   return (
     <div className="App">
-    <Signup/>
-      {/* 
-        //route
-        //signin
-        //signup
-        //forgotpassword
-
-      
-       */}
+      <AppRouter />
     </div>
   );
 }
