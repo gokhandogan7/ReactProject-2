@@ -3,6 +3,7 @@ import { Button, TextField, Grid, Container } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import firebase from "../firebase/firebase.utils";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 const stylesFunc = makeStyles({
   wrapper: {
@@ -23,13 +24,23 @@ function Signin() {
   };
 
   const handleFormSubmit = (values) => {
-    alert(JSON.stringify(values, null, 2));
+    // alert(JSON.stringify(values, null, 2));
+    firebase.signIn(values.email, values.password);
   };
+
+  const signInValidationSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string().required("required"),
+  });
 
   return (
     <Container className={signinStyles.wrapper} maxWidth="sm">
-      <Formik initialValues={initialValues} onSubmit={handleFormSubmit}>
-        {({ handleSubmit, handleChange, values }) => (
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleFormSubmit}
+        validationSchema={signInValidationSchema}
+      >
+        {({ handleSubmit, handleChange, values, errors }) => (
           <form onSubmit={handleSubmit}>
             <Grid container spacing={3}>
               <Grid item xs={12}>
@@ -40,6 +51,8 @@ function Signin() {
                   fullWidth
                   value={values.email}
                   onChange={handleChange}
+                  error={errors.email}
+                  helperText={errors.email}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -51,6 +64,8 @@ function Signin() {
                   fullWidth
                   value={values.password}
                   onChange={handleChange}
+                  error={errors.password}
+                  helperText={errors.password}
                 />
               </Grid>
               <Grid item xs={12}>
