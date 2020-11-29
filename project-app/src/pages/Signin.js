@@ -25,7 +25,9 @@ function Signin() {
 
   const handleFormSubmit = (values) => {
     // alert(JSON.stringify(values, null, 2));
-    firebase.signIn(values.email, values.password);
+    firebase.signIn(values.email, values.password)
+    .then(ree=>console.log(ree))
+    
   };
 
   const signInValidationSchema = Yup.object().shape({

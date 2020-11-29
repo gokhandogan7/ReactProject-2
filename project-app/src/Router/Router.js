@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Main from '../pages/Main'
 
 function AppRouter() {
+  console.log(process.env)
   return (
     <Router>
       <Navbar />

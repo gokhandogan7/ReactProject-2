@@ -4,20 +4,29 @@ import axios from "axios";
 const baseUrl = "https://jsonplaceholder.typicode.com";
 
 const Main = () => {
-  const [photo, setPhoto] = useState("https://jsonplaceholder.typicode.com");
+  const [photo, setPhoto] = useState("");
+  const [charge, setCharge] = useState(1);
 
-  useEffect(async  () => {
-    const fetchData = await axios
-      .get("https://jsonplaceholder.typicode.com/users")
+  const handleCharge = (e) => {
+    setCharge(e.target.value);
+  };
+
+const fetchData = async () => axios
+      .get(baseUrl + "/users")
       .then((res) => setPhoto(res.data))
       .catch((err) => console.log(err));
-  }, []);
 
-  return <div>
-  {
-      photo && photo.map(a => <p>{a.name}</p>)
-  }
-  </div>;
+  useEffect(() => {fetchData()}, []);
+console.log(photo[charge]?.company?.name)
+  
+  
+  
+  return (
+    <div>
+      <input onChange={handleCharge} />
+      <p>{photo[charge]?.company?.name}</p>
+    </div>
+  );
 };
 
 export default Main;

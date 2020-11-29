@@ -20,6 +20,7 @@ class Firebase {
   constructor() {
     //TODO: add initialize check
     firebase.initializeApp(config);
+    console.log(firebase)
     this.firebaseAuth = firebase.auth();
   }
 
@@ -39,8 +40,15 @@ class Firebase {
   }
 
   // login  signInWithEmailAndPassword
-  signIn(email, password) {
-    this.firebaseAuth.signInWithEmailAndPassword(email, password);
+  async signIn(email, password) {
+    try {
+      let res = await this.firebaseAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
+    } catch (error) {
+      return error.message;
+    }
   }
 
   // logout signOut
