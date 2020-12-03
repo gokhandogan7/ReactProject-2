@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Container } from "@material-ui/core";
 
-const baseUrl = "https://jsonplaceholder.typicode.com";
+const stylesFunc = makeStyles((theme) => ({
+  wrapper: {
+    marginTop: "10rem",
+    height: "calc(100vh - 19.0625)",
+    textAlign: "center",
+  },
+  avatar: {
+    margin: "1rem auto",
+    backgroundColor: theme.palette.secondary.main,
+  },
+}));
 
-const Main = () => {
-  const [photo, setPhoto] = useState("");
-  const [charge, setCharge] = useState(1);
+function Main() {
+  const signinStyles = stylesFunc();
 
-  const handleCharge = (e) => {
-    setCharge(e.target.value);
-  };
-
-const fetchData = async () => axios
-      .get(baseUrl + "/users")
-      .then((res) => setPhoto(res.data))
-      .catch((err) => console.log(err));
-
-  useEffect(() => {fetchData()}, []);
-console.log(photo[charge]?.company?.name)
   
-  
-  
+
+
+
+
+
   return (
-    <div>
-      <input onChange={handleCharge} />
-      <p>{photo[charge]?.company?.name}</p>
-    </div>
+    <Container className={signinStyles.wrapper} maxWidth="sm">
+      Main Page
+    </Container>
   );
-};
+}
 
 export default Main;

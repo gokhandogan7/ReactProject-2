@@ -20,7 +20,6 @@ class Firebase {
   constructor() {
     //TODO: add initialize check
     firebase.initializeApp(config);
-    console.log(firebase)
     this.firebaseAuth = firebase.auth();
   }
 

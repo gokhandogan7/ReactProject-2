@@ -9,8 +9,8 @@ function AuthContextProvider(props) {
 
   useEffect(() => {
     firebase.firebaseAuth.onAuthStateChanged((user) => {
-      console.log("user", user);
       setCurrentUser(user);
+      console.log("user", user.displayName);
     });
   }, []);
 

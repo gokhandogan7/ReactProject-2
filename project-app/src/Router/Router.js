@@ -4,6 +4,7 @@ import Signup from "../pages/Signup";
 import Signin from "../pages/Signin";
 import Navbar from "../components/Navbar";
 import Main from '../pages/Main'
+import Footer from "../components/Footer"
 
 function AppRouter() {
   console.log(process.env)
@@ -15,6 +16,7 @@ function AppRouter() {
         <Route exact path="/login" component={Signin} />
         <Route path="/" component={Main} />
       </Switch>
+      <Footer/>
     </Router>
   );
 }

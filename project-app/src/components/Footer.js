@@ -19,8 +19,10 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(70),
     marginBottom: theme.spacing(2),
+    textAlign:'center'
+
   },
   footer: {
     padding: theme.spacing(3, 2),
@@ -36,7 +38,7 @@ export default function StickyFooter() {
   const classes = useStyles();
 
   return (
-    <div id="footer" className="footer">
+    <div id="footer" className = {classes.main}>
       <footer className={classes.footer}>
         <Container maxWidth="sm">
           <Typography variant="body1">Address Virginia, USA.</Typography>
